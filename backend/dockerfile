@@ -1,0 +1,6 @@
+FROM node:20.10-alpine as nest_dev
+WORKDIR /app
+COPY package.json .
+RUN npm i
+COPY . .	
+EXPOSE 3000
