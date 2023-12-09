@@ -1,0 +1,13 @@
+@use 'sass:string';
+@use 'sass:map';
+
+@mixin rule_list($rule_list, $options_input: 'true') {
+  $options: string.split($options_input, ',');
+
+  @each $option in $options {
+    $modifiers: map.get($rule_list, $option);
+    @each $rule, $value in $modifiers {
+      #{$rule}: $value;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@use '@styles/vars';
+@use 'sass:map';
+
+@mixin row($gap, $xs, $sm, $md, $lg, $xl, $xxl) {
+  display: grid;
+  grid-template-columns: repeat(vars.$cols, 1fr);
+  gap: calc($gap * vars.$d);
+
+  $breakpoint_cols: (
+    'xs': $xs,
+    'sm': $sm,
+    'md': $md,
+    'lg': $lg,
+    'xl': $xl,
+    'xxl': $xxl,
+  );
+  @each $breakpoint_key, $breakpoint_value in vars.$breakpoints {
+    @media (min-width: #{$breakpoint_value}px) {
+      $current_cols_quantity: map.get($breakpoint_cols, $breakpoint_key);
+      grid-template-columns: repeat($current_cols_quantity, 1fr);
+    }
+  }
+}

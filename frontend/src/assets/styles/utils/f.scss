@@ -1,0 +1,78 @@
+@use '@styles/vars';
+@use '@styles/placeholders';
+
+$flex_modifiers: (
+  // complex
+  'c':
+    (
+      'justify-content': center,
+      'align-items': center,
+    ),
+
+  // direction
+  'col':
+    (
+      'flex-direction': column,
+    ),
+
+  // wrap
+  'nw':
+    (
+      'flex-wrap': nowrap,
+    ),
+  'wr': (
+    'flex-wrap': wrap-reverse,
+  ),
+
+  // justify-content
+  'js':
+    (
+      'justify-content': flex-start,
+    ),
+  'je': (
+    'justify-content': flex-end,
+  ),
+  'jc': (
+    'justify-content': center,
+  ),
+  'jsa': (
+    'justify-content': space-around,
+  ),
+  'jse': (
+    'justify-content': space-evenly,
+  ),
+  'jsb': (
+    'justify-content': space-between,
+  ),
+
+  // align-items
+  'as':
+    (
+      'align-items': flex-start,
+    ),
+  'ae': (
+    'align-items': flex-end,
+  ),
+  'ac': (
+    'align-items': center,
+  ),
+  'asa': (
+    'align-items': space-around,
+  ),
+  'ase': (
+    'align-items': space-evenly,
+  ),
+  'asb': (
+    'align-items': space-between,
+  )
+);
+
+@mixin f($gap: 1, $options_input: 'false') {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(#{$gap} * #{vars.$d});
+
+  @include placeholders.rule_list($flex_modifiers, $options_input);
+}

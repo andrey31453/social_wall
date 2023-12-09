@@ -1,1 +1,5 @@
-# social_wall
+## Сборка
+
+1. npm i
+
+2. npm run dev

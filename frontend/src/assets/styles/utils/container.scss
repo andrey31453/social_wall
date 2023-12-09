@@ -1,0 +1,25 @@
+@use '@styles/vars';
+@use 'sass:map';
+
+@mixin container($props_breakpoint_key: 'xs') {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+
+  $props_breakpoint_value: map.get(vars.$breakpoints, $props_breakpoint_key);
+  @each $breakpoint_key, $breakpoint_value in vars.$breakpoints {
+    @if $breakpoint_value >= $props_breakpoint_value {
+      $breakpoint_paddings: map.get(vars.$breakpoint_paddings, $breakpoint_key);
+
+      @media (min-width: #{$breakpoint_value + 2 * $breakpoint_paddings}px) {
+        @if $breakpoint_value > 0 {
+          max-width: #{$breakpoint_value}px;
+        } @else {
+          padding-left: #{$breakpoint_paddings}px;
+          padding-right: #{$breakpoint_paddings}px;
+        }
+      }
+    }
+  }
+}

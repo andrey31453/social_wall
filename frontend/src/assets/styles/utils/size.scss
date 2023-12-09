@@ -1,0 +1,23 @@
+@use 'sass:map';
+
+$types: (
+  'default': (
+    'width',
+  ),
+
+  'max': (
+    'max-width',
+  ),
+
+  'min': (
+    'min-width',
+  ),
+);
+
+@mixin size($size, $type: 'default') {
+  $current_type: map.get($types, $type);
+
+  @each $rule in $current_type {
+    #{$rule}: $size;
+  }
+}

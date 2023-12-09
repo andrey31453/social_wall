@@ -1,0 +1,16 @@
+@use 'sass:map';
+
+@mixin z($z) {
+  position: relative;
+  z-index: $z;
+}
+
+@mixin absolute($z, $offset: 0) {
+  position: absolute;
+  z-index: $z;
+
+  top: #{$offset}px;
+  bottom: #{$offset}px;
+  left: #{$offset}px;
+  right: #{$offset}px;
+}

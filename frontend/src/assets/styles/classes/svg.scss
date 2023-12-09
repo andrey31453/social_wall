@@ -1,0 +1,25 @@
+@use '@styles/vars';
+@use '@styles/utils';
+@use 'sass:map';
+
+$variants: (
+  'default': vars.$dc,
+  'alter': vars.$ac,
+  'font': vars.$fc,
+  'background': vars.$bc,
+  'current': currentColor,
+);
+
+@mixin svg($variant: 'default') {
+  $current_variant: map.get($variants, $variant);
+
+  @include utils.animation();
+
+  &:not([fill='none']) {
+    fill: $current_variant;
+  }
+
+  &[fill='none'] :where(path) {
+    stroke: $current_variant;
+  }
+}

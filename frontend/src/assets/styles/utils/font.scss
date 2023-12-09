@@ -1,0 +1,28 @@
+@use '@styles/vars';
+@use 'sass:map';
+@use 'sass:list';
+
+$regular: vars.$ff, vars.$fs, vars.$fw, vars.$lh, vars.$tt;
+$mark: vars.$ff__mark, vars.$fs__mark, vars.$fw__mark, vars.$lh__mark,
+  vars.$tt__mark;
+$h1: vars.$ff__h1, vars.$fs__h1, vars.$fw__h1, vars.$lh__h1, vars.$tt__h1;
+$h2: vars.$ff__h2, vars.$fs__h2, vars.$fw__h2, vars.$lh__h2, vars.$tt__h2;
+$h3: vars.$ff__h3, vars.$fs__h3, vars.$fw__h3, vars.$lh__h3, vars.$tt__h3;
+
+$font_types: (
+  'true': $regular,
+  'mark': $mark,
+  'h1': $h1,
+  'h2': $h2,
+  'h3': $h3,
+);
+
+@mixin font($font_type: 'true') {
+  $font_type_vars: map.get($font_types, $font_type);
+
+  font-family: list.nth($font_type_vars, 1);
+  font-size: list.nth($font_type_vars, 2);
+  font-weight: list.nth($font_type_vars, 3);
+  line-height: list.nth($font_type_vars, 4);
+  text-transform: list.nth($font_type_vars, 5);
+}

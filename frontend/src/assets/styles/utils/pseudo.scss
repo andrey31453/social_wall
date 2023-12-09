@@ -1,0 +1,11 @@
+@use '@styles/utils/position';
+@use 'sass:map';
+
+@mixin before($offset: 0) {
+  position: relative;
+
+  &::before {
+    @include position.absolute(0, $offset);
+    content: '';
+  }
+}

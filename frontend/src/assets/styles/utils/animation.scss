@@ -1,0 +1,22 @@
+@use '@styles/vars';
+
+@mixin animation() {
+  transition: width vars.$animation_time vars.$animation_method,
+    max-width vars.$animation_time vars.$animation_method,
+    height vars.$animation_time vars.$animation_method,
+    max-height vars.$animation_time vars.$animation_method,
+    color vars.$animation_time vars.$animation_method,
+    border vars.$animation_time vars.$animation_method,
+    box-shadow vars.$animation_time vars.$animation_method,
+    background vars.$animation_time vars.$animation_method,
+    margin vars.$animation_time vars.$animation_method,
+    padding vars.$animation_time vars.$animation_method,
+    transform vars.$animation_time vars.$animation_method,
+    opacity vars.$animation_time vars.$animation_method,
+    left vars.$animation_time vars.$animation_method,
+    top vars.$animation_time vars.$animation_method,
+    bottom vars.$animation_time vars.$animation_method,
+    right vars.$animation_time vars.$animation_method,
+    z-index vars.$animation_time vars.$animation_method,
+    fill vars.$animation_time vars.$animation_method;
+}
