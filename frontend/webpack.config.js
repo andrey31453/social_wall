@@ -136,12 +136,6 @@ const get_alias = () => {
 const get_serve = (dev) => {
   return dev
     ? {
-        open: {
-          app: {
-            name: 'google-chrome',
-            arguments: ['--new-tab'],
-          },
-        },
         hot: true,
         port: 8080,
       }
