@@ -1,7 +1,21 @@
 services:
+  nest:
+    env_file: ./.env
+
+    build:
+      context: ./backend
+      target: $backend_target
+      args:
+        workdir: $backend_workdir
+    command: npm run dev
+    ports:
+      - $backend_port:$backend_port
+    volumes:
+      - ./backend:$backend_workdir
+      - $backend_workdir/node_modules
+
   vue:
     env_file: ./.env
-    
 
     build:
       context: ./frontend
@@ -15,21 +29,18 @@ services:
       - ./frontend:$frontend_workdir
       - $frontend_workdir/node_modules
 
-  nest:
+  nginx:
     env_file: ./.env
-    
 
+    depends_on:
+      - nest
+      - vue
+    restart: always
     build:
-      context: ./backend
-      target: $backend_target
-      args:
-        workdir: $backend_workdir
-    command: npm run dev
+      context: ./nginx
+      target: $nginx_target
     ports:
-      - $backend_port:$backend_port
-    volumes:
-      - ./backend:$backend_workdir
-      - $backend_workdir/node_modules
+      - $nginx_port:$nginx_port
 
   # nginx:
   #   image: nginx:latest
