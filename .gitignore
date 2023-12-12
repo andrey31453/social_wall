@@ -7,7 +7,7 @@
 
 
 # compiled output
-/backend/dist
+/**/dist
 
 # Logs
 logs

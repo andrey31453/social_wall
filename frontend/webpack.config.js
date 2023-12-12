@@ -3,7 +3,7 @@ const { VueLoaderPlugin: vue_loader } = require('vue-loader')
 const copy_webpack = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
-const public = __dirname + '/public/'
+const dist = __dirname + '/dist/'
 const src = __dirname + '/src/'
 
 //
@@ -97,7 +97,7 @@ const get_plugins = () => {
       patterns: [
         {
           from: src + 'public',
-          to: public + 'assets',
+          to: dist + 'assets',
         },
       ],
     }),
@@ -111,7 +111,7 @@ const get_plugins = () => {
 const get_alias = () => {
   return {
     '@': src,
-    '@public': public,
+    '@dist': dist,
 
     '@layouts': src + 'layouts/__bunddle',
     '@views': src + 'views/__bunddle',
@@ -167,7 +167,7 @@ module.exports = ({ dev }) => {
     output: {
       filename: '[name].js',
       clean: true,
-      path: public,
+      path: dist,
       assetModuleFilename: '[name][ext]',
     },
 

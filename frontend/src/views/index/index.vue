@@ -13,7 +13,6 @@ onMounted(test)
 <template>
   <banner />
   <benefits />
-
   <ui_async>
     <features />
   </ui_async>
