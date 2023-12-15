@@ -1,43 +1,50 @@
-version: '3.8'
+version: '3'
 
 services:
-  nest:
-    env_file: ./.env
-
-    build:
-      context: ./backend
-      args:
-        workdir: $backend_workdir
+  mongodb:
+    image: mongo:latest
     ports:
-      - $backend_port:$backend_port
-    volumes:
-      - ./backend:$backend_workdir
-      - $backend_workdir/node_modules
+      - $bd_port:$bd_port
+    environment:
+      - MONGODB_DATABASE="test"
 
-  vue:
-    env_file: ./.env
-
-    build:
-      context: ./frontend
-      args:
-        workdir: $frontend_workdir
-    ports:
-      - $frontend_port:$frontend_port
-    volumes:
-      - ./frontend:$frontend_workdir
-      - $frontend_workdir/node_modules
-
-  nginx:
+  nestjs:
     depends_on:
-      - nest
-      - vue
+      - mongodb
     env_file: ./.env
 
-    image: nginx:1.25.3-alpine
+    build:
+      context: ./api
+      args:
+        workdir: $api_workdir
     ports:
-      - $nginx_port:80
+      - $api_port:$api_port
     volumes:
-      - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
-      # - ./frontend/dist:/var/www/social_wall
-      # - $frontend_workdir:/var/www/social_wall
-      # - $backend_workdir:/var/www/social_wall
+      - ./api:$api_workdir
+      - $api_workdir/node_modules
+
+  # vuejs:
+  #   env_file: ./.env
+
+  #   build:
+  #     context: ./client
+  #     args:
+  #       workdir: $client_workdir
+  #   ports:
+  #     - $client_port:$client_port
+  #   volumes:
+  #     - ./client:$client_workdir
+  #     - $client_workdir/node_modules
+
+  # nginx:
+  #   depends_on:
+  #     - nestjs
+  #     - vuejs
+  #   env_file: ./.env
+
+  #   image: nginx:1.25.3-alpine
+  #   restart: always
+  #   ports:
+  #     - $web_port:80
+  #   volumes:
+  #     - ./web/nginx.conf:/etc/nginx/conf.d/default.conf

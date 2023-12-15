@@ -138,6 +138,7 @@ const get_serve = (dev) => {
     ? {
         hot: true,
         port: 8080,
+        allowedHosts: 'all',
       }
     : undefined
 }
