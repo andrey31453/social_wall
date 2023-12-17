@@ -1,146 +1,120 @@
 const html_webpack = require('html-webpack-plugin')
 const { VueLoaderPlugin: vue_loader } = require('vue-loader')
 const copy_webpack = require('copy-webpack-plugin')
-const webpack = require('webpack')
 
 const dist = __dirname + '/dist/'
 const src = __dirname + '/src/'
-
-//
-// entry
-//
-
-const get_entry = () => {
-  return {
-    main: src + 'main.js',
-  }
-}
+const template = __dirname + '/src/template/'
 
 //
 // rules
 //
 
-const get_rules = (dev) => {
-  return [
-    // vue
-    {
-      test: /\.vue$/,
-      loader: 'vue-loader',
-    },
+const get_rules = (dev) => [
+  // vue
+  {
+    test: /\.vue$/,
+    loader: 'vue-loader',
+  },
 
-    // js
-    {
-      test: /\.(mjs|js)$/i,
-      exclude: /(node_modules)/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
+  // ts
+  {
+    test: /\.ts$/,
+    loader: 'ts-loader',
+    exclude: /node_modules/,
+    options: {
+      appendTsSuffixTo: [/\.vue$/],
+    },
+  },
+
+  // scss
+  {
+    test: /\.scss$/i,
+    use: [
+      'style-loader',
+      'css-loader',
+      {
+        loader: 'postcss-loader',
+        options: {
+          postcssOptions: {
+            plugins: [require('postcss-preset-env')],
           },
         },
-      ],
-    },
-
-    // scss
-    {
-      test: /\.scss$/i,
-      use: [
-        'style-loader',
-        'css-loader',
-        {
-          loader: 'postcss-loader',
-          options: {
-            postcssOptions: {
-              plugins: [require('postcss-preset-env')],
-            },
-          },
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: dev ? true : false,
         },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: dev ? true : false,
-          },
-        },
-      ],
-    },
+      },
+    ],
+  },
 
-    // files
-    {
-      test: /\.(png|jpg|webp|ico|.json)$/i,
-      type: 'asset/resource',
-    },
+  // files
+  {
+    test: /\.(png|jpg|webp|ico|.json)$/i,
+    type: 'asset/resource',
+  },
 
-    // svg
-    {
-      test: /\.svg$/,
-      loader: 'svg-inline-loader',
-    },
-  ]
-}
+  // svg
+  {
+    test: /\.svg$/,
+    loader: 'svg-inline-loader',
+  },
+]
 
 //
 // plugins
 //
 
-const get_plugins = () => {
-  return [
-    new webpack.DefinePlugin({
-      __VUE_OPTIONS_API__: false,
-      __VUE_PROD_DEVTOOLS__: false,
-    }),
-    new vue_loader(),
-    new html_webpack({
-      template: src + 'index.html',
-    }),
-    new copy_webpack({
-      patterns: [
-        {
-          from: src + 'public',
-          to: dist + 'assets',
-        },
-      ],
-    }),
-  ]
-}
+const get_plugins = () => [
+  new vue_loader(),
+  new html_webpack({
+    favicon: template + 'favicon.png',
+    template: template + 'index.html',
+  }),
+  new copy_webpack({
+    patterns: [
+      {
+        from: src + 'static',
+        to: dist + 'assets',
+      },
+    ],
+  }),
+]
 
 //
 // alias
 //
 
-const get_alias = () => {
-  return {
-    '@': src,
-    '@dist': dist,
+const get_alias = () => ({
+  '@': src,
 
-    '@layouts': src + 'layouts/__bunddle',
-    '@views': src + 'views/__bunddle',
-    '@components': src + 'components/__bunddle',
-    '@ui': src + 'ui/__bunddle',
+  '@layouts': src + 'layouts/__bunddle',
+  '@views': src + 'views/__bunddle',
+  '@components': src + 'components/__bunddle',
+  '@ui': src + 'ui/__bunddle',
 
-    '@consts': src + 'assets/consts/__bunddle',
-    '@helpers': src + 'assets/helpers/__bunddle',
-    '@styles': src + 'assets/styles',
+  '@consts': src + 'assets/consts/__bunddle',
+  '@helpers': src + 'assets/helpers/__bunddle',
+  '@styles': src + 'assets/styles',
 
-    '@composables': src + 'composables/__bunddle',
-    '@store': src + 'store/__bunddle',
-    '@directives': src + 'directives/__bunddle',
-    '@directives:helpers': src + 'directives/helpers/__bunddle',
-  }
-}
+  '@composables': src + 'composables/__bunddle',
+  '@store': src + 'store/__bunddle',
+})
 
 //
 // serve
 //
 
 const get_serve = (dev) => {
-  return dev
-    ? {
-        hot: true,
-        port: 8080,
-        allowedHosts: 'all',
-      }
-    : undefined
+  if (!dev) return undefined
+
+  return {
+    hot: true,
+    port: 8080,
+    allowedHosts: 'all',
+  }
 }
 
 //
@@ -162,7 +136,9 @@ module.exports = ({ dev }) => {
     devServer: get_serve(dev),
 
     // entry
-    entry: get_entry(),
+    entry: {
+      main: src + 'app/main.ts',
+    },
 
     // output
     output: {

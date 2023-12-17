@@ -1,5 +1,0 @@
-export { default as banner } from './banner/banner'
-export { default as benefits } from './benefits/benefits'
-export { default as benefit } from './benefit/benefit'
-export { default as features } from './features/features'
-export { default as feature } from './feature/feature'
