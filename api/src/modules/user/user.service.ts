@@ -18,4 +18,8 @@ export class User_Service {
   async get_users(): Promise<User[]> {
     return this.user_model.find().exec()
   }
+
+  delete_user(id: string): void {
+    this.user_model.find({ _id: id }).deleteOne().exec()
+  }
 }

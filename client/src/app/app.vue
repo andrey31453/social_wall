@@ -1,18 +1,38 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import {
+  app_body,
+  app_footer,
+  app_header,
+  app_record,
+  choise_user,
+  the_news,
+  app_wrapper,
+} from '@widgets'
 
-const test = async () => {
-  const data = await fetch('/api/message').then((d) => d.json())
-  console.log('data: ', data)
-}
-onMounted(test)
-const msg: string = 'fsfsfsfsds'
+// users
+
+import { use_users } from '@features'
+use_users()
 </script>
 
 <template>
-  <div>
-    {{ msg }}
-    test
-    <!-- <index /> -->
-  </div>
+  <app_wrapper>
+    <!-- header -->
+    <app_header>
+      <choise_user />
+    </app_header>
+    <!-- /header -->
+
+    <!-- body -->
+    <app_body>
+      <the_news />
+    </app_body>
+    <!-- /body -->
+
+    <!-- footer -->
+    <app_footer>
+      <app_record />
+    </app_footer>
+    <!-- /footer -->
+  </app_wrapper>
 </template>

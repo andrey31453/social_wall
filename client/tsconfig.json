@@ -5,6 +5,21 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "sourceMap": true
-  }
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@widgets": ["./src/widgets/index.ts"],
+      "@store": ["./src/processes/store"],
+      "@widgets": ["./src/widgets"],
+      "@features": ["./src/features"],
+      "@styles": ["./src/shared/styles"],
+      "@libs": ["./src/shared/libs"],
+      "@consts": ["./src/shared/consts"],
+      "@api": ["./src/shared/api"],
+      "@ui": ["./src/shared/ui"],
+      "@types": ["./src/entities/types"]
+    }
+  },
+
+  "includes": ["./src/app/*.d.ts"]
 }

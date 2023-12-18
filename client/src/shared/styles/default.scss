@@ -1,5 +1,5 @@
-@use '@styles/classes';
+@use '@styles/utils';
 
 html {
-  @include classes.scroll_style();
+  @include utils.scroll_style();
 }

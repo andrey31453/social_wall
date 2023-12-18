@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { HydratedDocument } from 'mongoose'
+
+export type user_document = HydratedDocument<User>
 
 @Schema()
 export class User {
   @Prop()
-  first_name: string
-
-  @Prop()
-  second_name: string
+  name: string
 
   @Prop()
   photo_id: number

@@ -9,10 +9,13 @@ export class Message {
   message: string
 
   @Prop()
-  timestamp: number
+  reply_to?: number
 
   @Prop()
-  reply_to?: number
+  created_at: Date
+
+  @Prop()
+  updated_at: Date
 }
 
 export const Message_schema = SchemaFactory.createForClass(Message)

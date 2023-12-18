@@ -1,6 +1,18 @@
 @use '@styles/vars';
 @use 'sass:string';
 
+@function get_padding($padding) {
+  @return calc(#{$padding} * #{vars.$d});
+}
+
 @mixin padding($padding) {
-  padding: calc(#{$padding} * #{vars.$d}) 0;
+  padding: get_padding($padding);
+}
+
+@mixin padding_x($padding) {
+  padding: 0 get_padding($padding);
+}
+
+@mixin padding_y($padding) {
+  padding: get_padding($padding) 0;
 }

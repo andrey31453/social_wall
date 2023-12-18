@@ -1,6 +1,7 @@
 const html_webpack = require('html-webpack-plugin')
 const { VueLoaderPlugin: vue_loader } = require('vue-loader')
 const copy_webpack = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 const dist = __dirname + '/dist/'
 const src = __dirname + '/src/'
@@ -27,9 +28,22 @@ const get_rules = (dev) => [
     },
   },
 
+  {
+    test: /\.js$/i,
+    exclude: /(node_modules)/,
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+        },
+      },
+    ],
+  },
+
   // scss
   {
-    test: /\.scss$/i,
+    test: /\.(scss|css|sass)$/i,
     use: [
       'style-loader',
       'css-loader',
@@ -68,6 +82,10 @@ const get_rules = (dev) => [
 //
 
 const get_plugins = () => [
+  new webpack.DefinePlugin({
+    __VUE_OPTIONS_API__: false,
+    __VUE_PROD_DEVTOOLS__: false,
+  }),
   new vue_loader(),
   new html_webpack({
     favicon: template + 'favicon.png',
@@ -90,17 +108,16 @@ const get_plugins = () => [
 const get_alias = () => ({
   '@': src,
 
-  '@layouts': src + 'layouts/__bunddle',
-  '@views': src + 'views/__bunddle',
-  '@components': src + 'components/__bunddle',
-  '@ui': src + 'ui/__bunddle',
+  '@store': src + 'processes/store',
+  '@widgets': src + 'widgets',
+  '@features': src + 'features',
 
-  '@consts': src + 'assets/consts/__bunddle',
-  '@helpers': src + 'assets/helpers/__bunddle',
-  '@styles': src + 'assets/styles',
-
-  '@composables': src + 'composables/__bunddle',
-  '@store': src + 'store/__bunddle',
+  '@styles': src + 'shared/styles',
+  '@libs': src + 'shared/libs',
+  '@consts': src + 'shared/consts',
+  '@api': src + 'shared/api',
+  '@ui': src + 'shared/ui',
+  '@types': src + 'entities/types',
 })
 
 //
@@ -150,7 +167,7 @@ module.exports = ({ dev }) => {
 
     // resolve
     resolve: {
-      extensions: ['.vue', '.js'],
+      extensions: ['.vue', '.ts', '.js'],
       alias: get_alias(),
     },
 

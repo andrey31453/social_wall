@@ -19,6 +19,9 @@ services:
         workdir: $api_workdir
     ports:
       - $api_port:$api_port
+    volumes:
+      - ./api:$api_workdir
+      - $api_workdir/node_modules
 
   vuejs:
     env_file: ./.env
@@ -29,6 +32,9 @@ services:
         workdir: $client_workdir
     ports:
       - $client_port:$client_port
+    volumes:
+      - ./client:$client_workdir
+      - $client_workdir/node_modules
 
   nginx:
     depends_on:

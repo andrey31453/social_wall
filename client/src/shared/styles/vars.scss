@@ -1,89 +1,47 @@
-// vars
-$s_value: 0.75;
-
-// consts
-
-$breakpoints: (
-  'xs': 0,
-  'sm': 576,
-  'md': 768,
-  'lg': 992,
-  'xl': 1200,
-  'xxl': 1400,
-);
-
-$breakpoint_paddings: (
-  'xs': 5,
-  'sm': 10,
-  'md': 20,
-  'lg': 30,
-  'xl': 50,
-  'xxl': 60,
-);
-
 // colors
 
-$fc: var(--font_color);
-$bc: var(--background_color);
-$dc: var(--default_color);
-$ac: var(--alter_color);
-
-// pararms
-
-$z: var(--z_index);
-$cols: var(--cols);
-
-$animation_time: var(--animation_time);
-$animation_method: var(--animation_method);
-
-// sizes
-
-$d: var(--distance);
-$dS: calc($s_value * var(--distance));
-$dN: calc(-1 * var(--distance));
-$brad: var(--border_radius);
-$scroll_width: var(--scroll_width);
-
-// buttons
-
-$button_width: var(--button_width);
-$button_height: var(--button_height);
-$button_padding: var(--button_padding);
-$button_border_width: var(--button_border_width);
+// font_color
+$fc: #000000;
+// background_color
+$bc: #ffffff;
+// default_color
+$dc: #c31631;
+// alter_color
+$ac: #0abab5;
 
 // fonts
 
-// regular
-$ff: var(--font_family);
-$fs: var(--font_size);
-$fw: var(--font_weight);
-$lh: var(--line_height);
-$tt: var(--transform);
+$ff: nissan_light;
+$fs: 16px;
+$fw: 300;
+$lh: 25.6px;
+$tt: inherit;
 
-// mark
-$ff__mark: var(--font_family__mark);
-$fs__mark: var(--font_size__mark);
-$fw__mark: var(--font_weight__mark);
-$lh__mark: var(--line_height__mark);
-$tt__mark: var(--transform__mark);
+$ff__mark: nissan_regular;
+$fs__mark: 16px;
+$fw__mark: 400;
+$lh__mark: 25.6px;
+$tt__mark: uppercase;
 
-// h1
-$ff__h1: var(--font_family__h1);
-$fs__h1: var(--font_size__h1);
-$fw__h1: var(--font_weight__h1);
-$lh__h1: var(--line_height__h1);
-$tt__h1: var(--transform__h1);
+$ff__h1: nissan_light;
+$fs__h1: 30px;
+$fw__h1: 300;
+$lh__h1: 64px;
+$tt__h1: uppercase;
 
-// h2
-$ff__h2: var(--font_family__h2);
-$fs__h2: var(--font_size__h2);
-$fw__h2: var(--font_weight__h2);
-$lh__h2: var(--line_height__h2);
-$tt__h2: var(--transform__h2);
+$ff__h2: nissan_regular;
+$fs__h2: 26px;
+$fw__h2: 300;
+$lh__h2: 48px;
+$tt__h2: inherit;
 
-// h3
-$ff__h3: var(--font_family__h3);
-$fs__h3: var(--font_size__h3);
-$fw__h3: var(--font_weight__h3);
-$lh__h3: var(--line_height__h3);
-$tt__h3: var(--transform__h3);
+$ff__h3: nissan_bold;
+$fs__h3: 16px;
+$fw__h3: 300;
+$lh__h3: 32px;
+$tt__h3: inherit;
+
+// animation
+
+$animation_time: 120ms;
+$animation_method: linear;

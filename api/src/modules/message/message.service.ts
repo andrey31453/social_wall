@@ -8,16 +8,20 @@ import { Message } from './message.schema'
 @Injectable()
 export class Message_Service {
   constructor(
-    @InjectModel(Message.name) private readonly Message_model: Model<Message>
+    @InjectModel(Message.name) private readonly message_model: Model<Message>
   ) {}
 
-  async create_message(
-    Create_Message_Dto: Create_Message_Dto
-  ): Promise<Message> {
-    return await this.Message_model.create(Create_Message_Dto)
+  async get_messages(): Promise<Message[]> {
+    return this.message_model.find().exec()
   }
 
-  async get_messages(): Promise<Message[]> {
-    return this.Message_model.find().exec()
+  async create_message(
+    create_message_dto: Create_Message_Dto
+  ): Promise<Message> {
+    return await this.message_model.create(create_message_dto)
+  }
+
+  delete_message(message_id): void {
+    this.message_model.findByIdAndDelete({ _id: message_id }).exec()
   }
 }
