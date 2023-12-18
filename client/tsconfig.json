@@ -8,16 +8,16 @@
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@widgets": ["./src/widgets/index.ts"],
-      "@store": ["./src/processes/store"],
-      "@widgets": ["./src/widgets"],
+      "@api": ["./src/entities/api"],
+      "@consts": ["./src/entities/consts"],
       "@features": ["./src/features"],
-      "@styles": ["./src/shared/styles"],
       "@libs": ["./src/shared/libs"],
-      "@consts": ["./src/shared/consts"],
-      "@api": ["./src/shared/api"],
+      "@store": ["./src/processes/store"],
+      "@styles": ["./src/shared/styles"],
+      "@types": ["./src/entities/types"],
       "@ui": ["./src/shared/ui"],
-      "@types": ["./src/entities/types"]
+      "@widgets": ["./src/widgets"],
+      "@widgets": ["./src/widgets/index.ts"]
     }
   },
 

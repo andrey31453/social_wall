@@ -6,16 +6,18 @@ export default {
   // state
   state: () => {
     return {
-      current_user: null as number,
+      current_user: null as string,
       users: [] as i_user[],
     }
   },
 
   // actions
   actions: {
-    async fetch_users(): Promise<void> {
+    async init(): Promise<void> {
       await this.set_users()
       this.set_init_users()
+
+      // this.delete_users(this.users)
     },
 
     async set_users(): Promise<void> {
@@ -32,11 +34,17 @@ export default {
     },
 
     set_current_user(): void {
+      if (!this.users.length) return void 0
+
       this.current_user = this.users[0]._id
     },
 
-    delete_users(): void {
-      this.users.forEach((user) => delete_user(user._id))
+    delete_users(users): void {
+      users.forEach((user) => delete_user(user._id))
+    },
+
+    get_user_id(user_name: string): string {
+      return this.users.find((user) => user.name === user_name)?._id
     },
   },
 }

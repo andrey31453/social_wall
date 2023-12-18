@@ -1,15 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { HydratedDocument } from 'mongoose'
+
+export type message_document = HydratedDocument<Message>
 
 @Schema()
 export class Message {
   @Prop()
-  author: number
+  author: string
 
   @Prop()
   message: string
 
   @Prop()
-  reply_to?: number
+  reply_to?: string
 
   @Prop()
   created_at: Date

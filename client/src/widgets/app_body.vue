@@ -1,3 +1,5 @@
 <template>
-  <div>body</div>
+  <v-container>
+    <slot />
+  </v-container>
 </template>

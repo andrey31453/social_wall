@@ -11,8 +11,13 @@ import {
 
 // users
 
-import { use_users } from '@features'
-use_users()
+import { use_user } from '@features'
+use_user()
+
+// messages
+
+import { use_message } from '@features'
+use_message()
 </script>
 
 <template>

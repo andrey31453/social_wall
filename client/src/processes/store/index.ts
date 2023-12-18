@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 
-// app
+// message
 
-import app_store from './app'
-const use_app_store = defineStore('app', app_store)
+import message_store from './message'
+const use_message_store = defineStore('message', message_store)
 
 // user
 
@@ -12,4 +12,4 @@ const use_user_store = defineStore('user', user_store)
 
 // export
 
-export { use_app_store, use_user_store }
+export { use_message_store, use_user_store }

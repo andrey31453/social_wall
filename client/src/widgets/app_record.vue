@@ -1,5 +1,5 @@
 <template>
-  <div class="app_record">Страх убивает разум @covid-19</div>
+  <div class="app_record">Страх убивает разум. @covid-19</div>
 </template>
 
 <style lang="scss">

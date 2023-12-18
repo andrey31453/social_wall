@@ -1,8 +1,11 @@
 export class Create_Message_Dto {
-  readonly author: number
+  readonly author: string
   readonly message: string
-  readonly timestamp: number
-  readonly created_at: Date
-  readonly updated_at: Date
-  readonly reply_to?: number
+  readonly reply_to?: string
+}
+
+export class Update_Message_Dto {
+  readonly author: string
+  readonly message: string
+  readonly reply_to?: string
 }

@@ -19,7 +19,7 @@ export class User_Service {
     return this.user_model.find().exec()
   }
 
-  delete_user(id: string): void {
-    this.user_model.find({ _id: id }).deleteOne().exec()
+  delete_user(user_id: string): void {
+    this.user_model.find({ _id: user_id }).deleteOne().exec()
   }
 }
