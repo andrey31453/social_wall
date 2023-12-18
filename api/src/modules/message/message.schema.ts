@@ -3,7 +3,12 @@ import { HydratedDocument } from 'mongoose'
 
 export type message_document = HydratedDocument<Message>
 
-@Schema()
+@Schema({
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  },
+})
 export class Message {
   @Prop()
   author: string
@@ -15,10 +20,10 @@ export class Message {
   reply_to?: string
 
   @Prop()
-  created_at: Date
+  created_at?: Date
 
   @Prop()
-  updated_at: Date
+  updated_at?: Date
 }
 
 export const Message_schema = SchemaFactory.createForClass(Message)

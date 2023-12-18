@@ -8,6 +8,8 @@ const { messages } = storeToRefs(message_store)
 
 <template>
   <div v-for="message in messages">
-    {{ message.message }}
+    <template v-if="!message.reply_to">
+      {{ message.message }}
+    </template>
   </div>
 </template>
