@@ -42,7 +42,7 @@ export const init_messages: i_create_init_message[] = [
 
   {
     author_name: user_names.baron,
-    message: 'ООО да',
+    message: 'Ха-ха-ха',
     fake_id: 7,
     reply_to_fake_id: 6,
   },

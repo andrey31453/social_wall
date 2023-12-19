@@ -112,6 +112,7 @@ const get_alias = () => ({
   '@widgets': src + 'widgets',
   '@features': src + 'features',
 
+  '@entities': src + 'entities',
   '@types': src + 'entities/types',
   '@consts': src + 'entities/consts',
   '@api': src + 'entities/api',

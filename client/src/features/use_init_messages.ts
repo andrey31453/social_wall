@@ -27,7 +27,7 @@ const get_message_id = (fake_id: number): string | undefined => {
   return current_reply_message._id ? current_reply_message._id : undefined
 }
 
-const create_init_message = async (message): Promise<void | i_message> => {
+const create_message_to_bd = async (message): Promise<void | i_message> => {
   if (!message.author) return await void 0
 
   return await create_message(message)
@@ -39,25 +39,25 @@ const set_new_message = (new_message: i_message | void): void => {
   new_messages_cash.push(null)
 }
 
-const set_init_message = async (
+const create_init_message = async (
   init_message: i_create_init_message,
   user_store: i_user_store
 ) => {
   const [author] = [user_store.get_user_id(init_message.author_name)]
 
   const message = Object.assign(init_message, { author })
-  const new_message = await create_init_message(message)
+  const new_message = await create_message_to_bd(message)
   set_new_message(new_message)
 
   return true
 }
 
-const set_init_messages = (
+const create_init_messages = (
   ctx: i_message_store,
   user_store: i_user_store
 ): void => {
   init_messages.forEach((init_message) => {
-    set_init_message(init_message, user_store)
+    create_init_message(init_message, user_store)
   })
 }
 
@@ -73,6 +73,49 @@ const end_creates = async () => {
 
   await delay(50)
   return end_creates()
+}
+
+const add_message_hash = (hash, init_message, reply_to) => {
+  const current_hash_value = hash.get(reply_to)
+  const new_hash_value = current_hash_value
+    ? [...current_hash_value, init_message]
+    : [init_message]
+
+  hash.set(reply_to, new_hash_value)
+
+  return hash
+}
+
+const create_reply_to_hash = () => {
+  return init_messages.reduce((hash, init_message) => {
+    if (!init_message.reply_to_fake_id)
+      return add_message_hash(hash, init_message, 'no_reply')
+
+    return add_message_hash(hash, init_message, init_message.reply_to_fake_id)
+  }, new Map())
+}
+
+const set_level = (message, reply_to_hash, level): void => {
+  message.level = level
+
+  const reply_messages = reply_to_hash.get(message.fake_id)
+  if (!reply_messages) return
+
+  reply_messages.forEach((reply_message) => {
+    set_level(reply_message, reply_to_hash, level + 1)
+  })
+}
+
+const set_levels = (messages, reply_to_hash) => {
+  messages.forEach((message) => {
+    set_level(message, reply_to_hash, 0)
+  })
+}
+
+const create_level_to_init_messages = () => {
+  const reply_to_hash = create_reply_to_hash()
+  const no_reply_messages = reply_to_hash.get('no_reply')
+  set_levels(no_reply_messages, reply_to_hash)
 }
 
 const initialize_users = async (user_store: i_user_store) => {
@@ -100,8 +143,6 @@ const do_update_message = async (init_message) => {
     Object.assign(init_message, { reply_to })
   )
 
-  console.log('update_data: ', update_data)
-
   end_update_message()
 }
 
@@ -114,7 +155,8 @@ export const use_init_messages = async (
   const user_store: i_user_store = use_user_store()
 
   await initialize_users(user_store)
-  set_init_messages(ctx, user_store)
+  create_level_to_init_messages()
+  create_init_messages(ctx, user_store)
 
   await end_creates()
   update_messages()

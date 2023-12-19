@@ -4,8 +4,8 @@ import {
   app_footer,
   app_header,
   app_record,
-  choise_user,
-  the_news,
+  app_user,
+  app_messages,
   app_wrapper,
 } from '@widgets'
 
@@ -24,13 +24,13 @@ use_message()
   <app_wrapper>
     <!-- header -->
     <app_header>
-      <choise_user />
+      <app_user />
     </app_header>
     <!-- /header -->
 
     <!-- body -->
     <app_body>
-      <the_news />
+      <app_messages />
     </app_body>
     <!-- /body -->
 

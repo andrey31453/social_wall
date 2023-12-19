@@ -17,6 +17,9 @@ export class Message {
   message: string
 
   @Prop()
+  level: number
+
+  @Prop()
   reply_to?: string
 
   @Prop()

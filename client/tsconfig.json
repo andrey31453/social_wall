@@ -10,6 +10,7 @@
     "paths": {
       "@api": ["./src/entities/api"],
       "@consts": ["./src/entities/consts"],
+      "@entities": ["./src/entities"],
       "@features": ["./src/features"],
       "@libs": ["./src/shared/libs"],
       "@store": ["./src/processes/store"],
