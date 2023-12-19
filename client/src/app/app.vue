@@ -7,7 +7,10 @@ import {
   app_user,
   app_messages,
   app_wrapper,
+  app_new_messages,
 } from '@widgets'
+
+import { the_wrapper } from '@ui'
 
 // users
 
@@ -30,7 +33,10 @@ use_message()
 
     <!-- body -->
     <app_body>
-      <app_messages />
+      <the_wrapper column>
+        <app_new_messages />
+        <app_messages />
+      </the_wrapper>
     </app_body>
     <!-- /body -->
 

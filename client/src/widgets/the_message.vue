@@ -74,6 +74,7 @@ import { the_btn, the_wrapper } from '@ui'
         <the_new_message
           :style="`margin-right: ${6 * data.level}rem`"
           :reply_to="data._id"
+          :level="data.level + 1"
           @close="toggle_new_message_displayed"
         />
       </template>

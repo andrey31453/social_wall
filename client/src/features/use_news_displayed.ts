@@ -13,8 +13,6 @@ export const use_news_displayed = (reply_to, news_id) => {
   }
 
   const change_visible_news = () => {
-    console.log('displayed_news: ', displayed_news)
-
     displayed_news.has(news_id)
       ? displayed_news.delete(news_id)
       : displayed_news.add(news_id)

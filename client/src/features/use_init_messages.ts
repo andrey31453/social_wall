@@ -90,7 +90,6 @@ const set_levels = (messages, reply_to_hash) => {
 
 const create_level_to_init_messages = () => {
   const reply_to_hash = use_reply_hash(init_messages, 'reply_to_fake_id')
-  console.log('reply_to_hash: ', reply_to_hash)
   const no_reply_messages = reply_to_hash.get('no_reply')
   set_levels(no_reply_messages, reply_to_hash)
 }
