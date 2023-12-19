@@ -3,11 +3,11 @@
 @use 'sass:list';
 
 $regular: vars.$ff, vars.$fs, vars.$fw, vars.$lh, vars.$tt;
-$mark: vars.$ff__mark, vars.$fs__mark, vars.$fw__mark, vars.$lh__mark,
-  vars.$tt__mark;
-$h1: vars.$ff__h1, vars.$fs__h1, vars.$fw__h1, vars.$lh__h1, vars.$tt__h1;
-$h2: vars.$ff__h2, vars.$fs__h2, vars.$fw__h2, vars.$lh__h2, vars.$tt__h2;
-$h3: vars.$ff__h3, vars.$fs__h3, vars.$fw__h3, vars.$lh__h3, vars.$tt__h3;
+$mark: vars.$ff_mark, vars.$fs_mark, vars.$fw_mark, vars.$lh_mark, vars.$tt_mark;
+$h1: vars.$ff_h1, vars.$fs_h1, vars.$fw_h1, vars.$lh_h1, vars.$tt_h1;
+$h2: vars.$ff_h2, vars.$fs_h2, vars.$fw_h2, vars.$lh_h2, vars.$tt_h2;
+$h3: vars.$ff_h3, vars.$fs_h3, vars.$fw_h3, vars.$lh_h3, vars.$tt_h3;
+$small: vars.$ff_sm, vars.$fs_sm, vars.$fw_sm, vars.$lh_sm, vars.$tt_sm;
 
 $font_types: (
   'true': $regular,
@@ -15,6 +15,7 @@ $font_types: (
   'h1': $h1,
   'h2': $h2,
   'h3': $h3,
+  'small': $small,
 );
 
 @mixin font($font_type: 'true') {

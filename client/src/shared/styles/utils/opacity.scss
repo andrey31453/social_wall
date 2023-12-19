@@ -1,0 +1,13 @@
+@use '@styles/vars';
+@use 'sass:map';
+
+$opacity_variants: (
+  'false': 1,
+  'true': vars.$text_opacity,
+);
+
+@mixin opacity($variant: 'true') {
+  $opacity_variant: map.get($opacity_variants, $variant);
+
+  opacity: $opacity_variant;
+}

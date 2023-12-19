@@ -1,14 +1,10 @@
-import {
-  i_message,
-  i_create_message,
-  i_user,
-  i_create_init_message,
-} from '@types'
+import { i_message, i_user, i_create_init_message } from '@types'
 
 import { create_message, update_message } from '@api'
 import { init_messages } from '@consts'
 import { delay } from '@libs'
 import { use_user_store } from '@store'
+import { use_reply_hash } from '@features'
 
 interface i_message_store {
   messages: i_message[]
@@ -75,31 +71,11 @@ const end_creates = async () => {
   return end_creates()
 }
 
-const add_message_hash = (hash, init_message, reply_to) => {
-  const current_hash_value = hash.get(reply_to)
-  const new_hash_value = current_hash_value
-    ? [...current_hash_value, init_message]
-    : [init_message]
-
-  hash.set(reply_to, new_hash_value)
-
-  return hash
-}
-
-const create_reply_to_hash = () => {
-  return init_messages.reduce((hash, init_message) => {
-    if (!init_message.reply_to_fake_id)
-      return add_message_hash(hash, init_message, 'no_reply')
-
-    return add_message_hash(hash, init_message, init_message.reply_to_fake_id)
-  }, new Map())
-}
-
 const set_level = (message, reply_to_hash, level): void => {
   message.level = level
 
   const reply_messages = reply_to_hash.get(message.fake_id)
-  if (!reply_messages) return
+  if (!reply_messages) return void 0
 
   reply_messages.forEach((reply_message) => {
     set_level(reply_message, reply_to_hash, level + 1)
@@ -113,7 +89,8 @@ const set_levels = (messages, reply_to_hash) => {
 }
 
 const create_level_to_init_messages = () => {
-  const reply_to_hash = create_reply_to_hash()
+  const reply_to_hash = use_reply_hash(init_messages, 'reply_to_fake_id')
+  console.log('reply_to_hash: ', reply_to_hash)
   const no_reply_messages = reply_to_hash.get('no_reply')
   set_levels(no_reply_messages, reply_to_hash)
 }

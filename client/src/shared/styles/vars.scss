@@ -1,5 +1,7 @@
 // colors
 
+$text_opacity: 0.6;
+
 // font_color
 $fc: #000000;
 // background_color
@@ -17,29 +19,35 @@ $fw: 300;
 $lh: 25.6px;
 $tt: inherit;
 
-$ff__mark: nissan_regular;
-$fs__mark: 16px;
-$fw__mark: 400;
-$lh__mark: 25.6px;
-$tt__mark: uppercase;
+$ff_mark: nissan_regular;
+$fs_mark: 16px;
+$fw_mark: 400;
+$lh_mark: 25.6px;
+$tt_mark: uppercase;
 
-$ff__h1: nissan_light;
-$fs__h1: 30px;
-$fw__h1: 300;
-$lh__h1: 64px;
-$tt__h1: uppercase;
+$ff_h1: nissan_light;
+$fs_h1: 30px;
+$fw_h1: 300;
+$lh_h1: 64px;
+$tt_h1: uppercase;
 
-$ff__h2: nissan_regular;
-$fs__h2: 26px;
-$fw__h2: 300;
-$lh__h2: 48px;
-$tt__h2: inherit;
+$ff_h2: nissan_regular;
+$fs_h2: 26px;
+$fw_h2: 300;
+$lh_h2: 48px;
+$tt_h2: inherit;
 
-$ff__h3: nissan_bold;
-$fs__h3: 16px;
-$fw__h3: 300;
-$lh__h3: 32px;
-$tt__h3: inherit;
+$ff_h3: nissan_bold;
+$fs_h3: 16px;
+$fw_h3: 300;
+$lh_h3: 32px;
+$tt_h3: inherit;
+
+$ff_sm: nissan_light;
+$fs_sm: 16px;
+$fw_sm: 100;
+$lh_sm: 24px;
+$tt_sm: inherit;
 
 // animation
 

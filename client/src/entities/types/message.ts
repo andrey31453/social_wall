@@ -21,4 +21,6 @@ export interface i_message extends i_create_message {
   updated_at: Date
 }
 
-export interface i_extend_message extends i_message {}
+export interface i_extend_message extends i_message {
+  answers: number
+}
