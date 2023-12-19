@@ -10,6 +10,7 @@ export default {
       messages: [] as i_message[],
       extend_messages: [] as i_extend_message[],
       displayed_news: new Set() as Set<string>,
+      news_reactive_key: 0 as number,
     }
   },
 
@@ -19,6 +20,7 @@ export default {
       await this.set_messages()
       await use_init_messages(this, this.set_messages)
       this.set_extend_messages()
+      this.reactive_news()
 
       // this.delete_messages(this.messages)
     },
@@ -95,6 +97,10 @@ export default {
       this.displayed_news.has(news_id)
         ? this.displayed_news.delete(news_id)
         : this.displayed_news.add(news_id)
+    },
+
+    reactive_news() {
+      this.news_reactive_key++
     },
   },
 }
