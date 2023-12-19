@@ -6,6 +6,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "moment": "^2.29.4",
     "pinia": "^2.0.34",
     "vue": "^3.3.12",
     "vuetify": "^3.4.7"

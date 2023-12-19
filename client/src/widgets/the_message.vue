@@ -28,7 +28,7 @@ const toggle_new_message_displayed = () => {
 // components
 
 import { the_new_message } from '@widgets'
-import { the_btn, the_wrapper } from '@ui'
+import { the_btn, the_wrapper, the_date } from '@ui'
 </script>
 
 <template>
@@ -51,7 +51,7 @@ import { the_btn, the_wrapper } from '@ui'
             {{ author_name }}&nbsp;
           </span>
 
-          <!-- <the_date :date="data.updated_at" /> -->
+          <the_date :date="data.updated_at" />
         </v-card-title>
         <v-card-text> {{ data.message }} </v-card-text>
 
