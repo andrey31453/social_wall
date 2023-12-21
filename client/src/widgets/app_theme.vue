@@ -12,9 +12,13 @@ const theme_name: Ref<string> = computed(() =>
   theme.global.current.value.dark ? 'Салуса Секундус' : 'Дюна'
 )
 
-import { the_wrapper, the_background } from '@ui'
+import { the_wrapper, the_background, the_btn } from '@ui'
 </script>
 
 <template>
-  <v-btn @click="toggle_theme">{{ theme_name }}</v-btn>
+  <the_btn
+    active
+    @click="toggle_theme"
+    >{{ theme_name }}</the_btn
+  >
 </template>

@@ -25,6 +25,10 @@ const toggle_new_message_displayed = () => {
   is_new_message_displayed.value = !is_new_message_displayed.value
 }
 
+// filters
+
+import { word_declination } from '@libs'
+
 // components
 
 import { the_new_message } from '@widgets'
@@ -61,7 +65,10 @@ import { the_btn, the_wrapper, the_date } from '@ui'
 
             <template v-if="data.answers">
               <the_btn @click="change_visible_news(data._id)">
-                {{ data.answers }} ответов
+                {{ data.answers }}
+                {{
+                  word_declination(data.answers, ['ответ', 'ответа', 'ответов'])
+                }}
               </the_btn>
             </template>
           </the_wrapper>
