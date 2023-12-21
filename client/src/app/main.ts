@@ -15,23 +15,9 @@ import '@styles/fonts.scss'
 // vuetify
 
 import 'vuetify/styles'
-import { createVuetify, type ThemeDefinition } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+import { use_vuetify } from '@entities'
 
-import { light_theme } from '@consts'
-
-const vuetify = createVuetify({
-  theme: {
-    defaultTheme: 'dark',
-    themes: {
-      light_theme,
-    },
-  },
-
-  components,
-  directives,
-})
+const vuetify = use_vuetify()
 vue_app.use(vuetify)
 
 // pinia
