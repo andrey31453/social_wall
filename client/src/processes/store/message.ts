@@ -39,7 +39,11 @@ export default {
       this.sort_extend_messages_by_date()
       const is_messages_need_change_pos = this.get_messages_need_change_pos()
       this.change_messages_pos(is_messages_need_change_pos)
-      const reply_hash = use_reply_hash(this.extend_messages, 'reply_to')
+      const reply_hash = use_reply_hash<string, i_extend_message>(
+        this.extend_messages,
+        'no_reply',
+        'reply_to'
+      )
       this.set_answers(reply_hash)
     },
 

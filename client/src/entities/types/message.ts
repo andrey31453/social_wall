@@ -13,6 +13,7 @@ export interface i_create_init_message extends i_message_base {
   fake_id: number
   reply_to_fake_id?: number
   _id?: string
+  level?: number
 }
 
 export interface i_message extends i_create_message {
