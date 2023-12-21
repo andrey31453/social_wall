@@ -1,5 +1,10 @@
 <script setup>
 const props = defineProps({
+  between: {
+    type: Boolean,
+    default: false,
+  },
+
   center: {
     type: Boolean,
     default: false,
@@ -42,23 +47,33 @@ const props = defineProps({
 })
 
 // flex rules
-const get_justify = (center, end, column) => {
+const get_justify = ({ between, center, end, column }) => {
   if (column) return ''
+  if (between) return `justify-space-between`
   if (center) return `justify-center`
   if (end) return `justify-end`
 
   return `justify-start`
 }
 
-const get_align = (center, end, column) => {
+const get_align = ({ center, end, column }) => {
   if (column) return ''
 
   return `align-center`
 }
 
-const justify_class = get_justify(props.center, props.end, props.column)
+const justify_class = get_justify({
+  between: props.between,
+  center: props.center,
+  end: props.end,
+  column: props.column,
+})
 
-const align_class = get_align(props.center, props.end, props.column)
+const align_class = get_align({
+  center: props.center,
+  end: props.end,
+  column: props.column,
+})
 </script>
 
 <template>
@@ -88,6 +103,7 @@ const align_class = get_align(props.center, props.end, props.column)
 @use '@styles/utils';
 
 .app_record {
+  width: 100%;
   @include utils.font('mark');
 }
 </style>

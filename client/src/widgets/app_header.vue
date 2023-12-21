@@ -8,8 +8,14 @@ import { the_wrapper, the_background } from '@ui'
     variant="contrast"
   >
     <v-container>
-      <the_wrapper end>
-        <slot />
+      <the_wrapper between>
+        <the_wrapper start>
+          <slot name="start" />
+        </the_wrapper>
+
+        <the_wrapper end>
+          <slot name="end" />
+        </the_wrapper>
       </the_wrapper>
     </v-container>
   </the_background>

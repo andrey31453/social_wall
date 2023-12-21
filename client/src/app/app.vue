@@ -1,17 +1,4 @@
 <script setup lang="ts">
-import {
-  app_body,
-  app_footer,
-  app_header,
-  app_record,
-  app_user,
-  app_messages,
-  app_wrapper,
-  app_new_messages,
-} from '@widgets'
-
-import { the_wrapper } from '@ui'
-
 // users
 
 import { use_user } from '@features'
@@ -21,13 +8,34 @@ use_user()
 
 import { use_message } from '@features'
 use_message()
+
+// components
+
+import {
+  app_body,
+  app_footer,
+  app_header,
+  app_messages,
+  app_new_messages,
+  app_record,
+  app_theme,
+  app_user,
+  app_wrapper,
+} from '@widgets'
+
+import { the_wrapper } from '@ui'
 </script>
 
 <template>
   <app_wrapper>
     <!-- header -->
     <app_header>
-      <app_user />
+      <template #start>
+        <app_theme />
+      </template>
+      <template #end>
+        <app_user />
+      </template>
     </app_header>
     <!-- /header -->
 

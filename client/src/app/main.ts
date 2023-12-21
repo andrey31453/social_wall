@@ -15,13 +15,18 @@ import '@styles/fonts.scss'
 // vuetify
 
 import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
+import { createVuetify, type ThemeDefinition } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+
+import { light_theme } from '@consts'
 
 const vuetify = createVuetify({
   theme: {
     defaultTheme: 'dark',
+    themes: {
+      light_theme,
+    },
   },
 
   components,
