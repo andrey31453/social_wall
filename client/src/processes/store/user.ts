@@ -31,8 +31,8 @@ export default {
       this.current_user = this.users[0]._id
     },
 
-    delete_users(users): void {
-      users.forEach((user) => delete_user(user._id))
+    delete_users(users: i_user[]): void {
+      users.forEach(({ _id }) => delete_user(_id))
     },
 
     get_user_id(user_name: string): string {

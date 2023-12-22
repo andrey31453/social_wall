@@ -43,7 +43,7 @@ const use_post_fetch = async (uri, body) => {
   return Object.assign(body, data)
 }
 
-const use_delete_fetch = (uri, id) => {
+const use_delete_fetch = (uri, id): void => {
   fetch(uri + id, {
     method: 'delete',
   })

@@ -60,11 +60,11 @@ export default {
       return void (extend_message.answers = replyes.length)
     },
 
-    change_message_pos(message, idx) {
-      const old_pos = this.extend_messages.findIndex(
+    change_message_pos(message: i_extend_message) {
+      const old_pos: i_extend_message = this.extend_messages.findIndex(
         (extend_message) => extend_message._id === message._id
       )
-      const new_pos = this.extend_messages.findIndex(
+      const new_pos: i_extend_message = this.extend_messages.findIndex(
         (extend_message) => extend_message._id === message.reply_to
       )
 
@@ -72,11 +72,11 @@ export default {
       this.extend_messages.splice(new_pos, 0, message)
     },
 
-    change_messages_pos(messages) {
+    change_messages_pos(messages: i_extend_message[]): void {
       messages.forEach(this.change_message_pos, this)
     },
 
-    get_messages_need_change_pos() {
+    get_messages_need_change_pos(): i_extend_message[] {
       return this.extend_messages.filter((m) => m.level).reverse()
     },
 
@@ -91,7 +91,7 @@ export default {
     // visible
     //
 
-    is_displayed(reply_to) {
+    is_displayed(reply_to): boolean {
       return !reply_to || this.displayed_news.has(reply_to)
     },
 

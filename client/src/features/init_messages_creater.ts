@@ -7,7 +7,7 @@ interface i_init_messages_creater {
 }
 
 export class Init_Messages_Creater implements i_init_messages_creater {
-  private readonly no_reply_key = 'no_reply'
+  private readonly no_reply_key: string = 'no_reply'
   private reply_to_hash: i_reply_to_hash<number, i_create_init_message>
   private messages: i_create_init_message[]
   j
@@ -34,7 +34,9 @@ export class Init_Messages_Creater implements i_init_messages_creater {
 
   private set_level(message: i_create_init_message, level: number): void {
     message.level = level
-    const reply_messages = this.reply_to_hash.get(message.fake_id)
+    const reply_messages: i_create_init_message[] = this.reply_to_hash.get(
+      message.fake_id
+    )
 
     this.set_level_to_reply_messages(reply_messages, level)
   }
