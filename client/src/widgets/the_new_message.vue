@@ -76,7 +76,7 @@ import { the_btn, the_wrapper } from '@ui'
     </template>
 
     <the_btn
-      variant="submit"
+      submit
       @click="on_submit"
     >
       отправить

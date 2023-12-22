@@ -3,11 +3,11 @@ import moment from 'moment'
 
 const props = defineProps({
   date: {
-    type: Date,
+    type: String,
   },
 })
 
-const date_format = moment(props.date).locale('ru').format('DD MMMM YY')
+const date_format = moment(props.date).locale('ru').format('hh:mm DD MMMM')
 </script>
 
 <template>

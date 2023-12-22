@@ -1,21 +1,27 @@
 <script setup lang="ts">
 const props = defineProps({
-  variant: {
-    type: String,
-    default: '',
+  submit: {
+    type: Boolean,
+    default: false,
   },
 })
 
-const v_variants = {
+const variants = {
   submit: 'tonal',
+  default: 'text',
 }
 
-const v_variant = v_variants[props.variant] || 'default'
+const get_variant = ({ submit }) => {
+  if (submit) return variants.submit
+
+  return variants.default
+}
+const variant = get_variant(props)
 </script>
 
 <template>
   <v-btn
-    :variant="v_variant"
+    :variant="variant"
     class="the_btn"
   >
     <slot />
