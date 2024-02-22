@@ -16,7 +16,7 @@
 1. docker
 2. mongodb
 3. nextjs
-4. nginx _да 3 строчки, но очень важные 3 точки!!!_
+4. nginx
 5. webpack
 6. vue 3
 7. pinia
