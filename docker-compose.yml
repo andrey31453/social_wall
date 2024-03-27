@@ -21,7 +21,7 @@ services:
       - $api_port:$api_port
     volumes:
       - ./api:$api_workdir
-      - $api_workdir/node_modules
+      - v_nestjs:$api_workdir/node_modules
 
   vuejs:
     env_file: ./.env
@@ -34,7 +34,7 @@ services:
       - $client_port:$client_port
     volumes:
       - ./client:$client_workdir
-      - $client_workdir/node_modules
+      - v_vuejs:$client_workdir/node_modules
 
   nginx:
     depends_on:
@@ -48,3 +48,18 @@ services:
       - $web_port:80
     volumes:
       - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  v_nestjs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./api/node_modules
+
+  v_vuejs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./client/node_modules
