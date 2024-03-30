@@ -2,8 +2,9 @@
 
 1. git clone https://github.com/kvisatchaderah/social_wall.git
 2. cd ./social_wall
-3. docker-compose up
-4. open http://localhost:8000/
+3. сhmod +x ./dev.sh
+4. ./dev.sh
+5. open http://localhost:8000/
 
 ## UX
 
